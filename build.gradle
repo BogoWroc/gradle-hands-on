@@ -33,3 +33,47 @@ task Task2 {
 	}
 
 }
+
+// mustRunAfter and shouldRunAfter
+
+task TaskA {
+	doLast {
+	 println "Task A"
+	}
+
+	dependsOn {
+		TaskB
+	}
+}
+
+task TaskB {
+	doLast {
+	 println "Task B"
+	}
+
+	mustRunAfter {
+		TaskC
+	}
+
+	dependsOn {
+		TaskC
+	}
+}
+
+task TaskC {
+	doLast {
+	 println "Task C"
+	}
+
+	shouldRunAfter {
+		TaskD
+	}
+}
+
+task TaskD {
+	doLast {
+	 println "Task D"
+	}
+
+}
+
