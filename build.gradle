@@ -1,0 +1,35 @@
+
+// 1. Initialization phase - used to configure multi project builds
+// 2. Configuration phase - execute code in the task that is not the action
+// 3. Execution phase - execute the task actions doFirst, doLast
+
+// def keyword is used for local property definition - scope file only
+
+def projectVersion = "2.0"
+
+// project.ext is used as global scope. Properties added to this object are visible in all project build files
+project.ext.someGlobalProp = "Global value"
+task Task1 {
+	description "Simple task 1"
+	doLast {
+		println "Here task 1. Ready to action!"
+		println "Project version is $projectVersion"
+		println "Global property has a value '$project.ext.someGlobalProp'"
+	}
+}
+
+task Task2 {
+	description "Configuration phase"
+	doFirst {
+		println "Take an action at the begin of task ..."
+	}
+
+	doLast {
+		println "Taka an action at the end of task!"
+	}
+
+	dependsOn {
+		Task1
+	}
+
+}
