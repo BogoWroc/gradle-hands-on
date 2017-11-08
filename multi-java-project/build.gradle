@@ -1,0 +1,15 @@
+// defines project wide build functionality
+
+allprojects {
+    apply plugin: 'java'
+}
+
+project(':repository') {}
+
+project(':service') {
+
+    // configure dependencies
+    dependencies {
+        compile project(':repository')
+    }
+}

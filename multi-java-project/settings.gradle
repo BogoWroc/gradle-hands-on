@@ -1,0 +1,3 @@
+// List of all the projects in the build
+
+include 'repository', 'service'
